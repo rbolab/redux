@@ -1,26 +1,25 @@
-<article class="template animated slideInRight">
+<md-card>
+  <div *ngIf="!course">Please select a fund !</div>
   <div *ngIf="course">
-    <h4>{{editCourse.name | uppercase}} details</h4>
+    <md-card-title>
+      Details
+    </md-card-title>
+    <md-card-content>
+      <md-input-container>
+        <input mdInput placeholder="Name" [(ngModel)]="editCourse.name">
+      </md-input-container>
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <label class="mdl-textfield__label" for="nametext">Name</label>
-      <input type="text" id="nametext" class="mdl-textfield__input"  />
-    </div>
-
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <label class="mdl-textfield__label" for="sidetext">Topic</label>
-      <input type="text" id="sidetext" class="mdl-textfield__input"  />
-    </div>
-
-    <div>
-      <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect
-      mdl-button--accent" (click)="save()">Save</button>
-      &nbsp;
-      <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect
-      " (click)="cancel()">Cancel</button>
-      &nbsp;
-      <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="delete()" [class.not-displayed]="isAddMode()">Delete</button>
-    </div>
+      <md-input-container>
+        <input mdInput placeholder="Topic" [(ngModel)]="editCourse.topic">
+      </md-input-container>
+    </md-card-content>
+    <md-card-footer>
+      <div>
+        <button (click)="save()" md-raised-button>Save</button> &nbsp;
+        <button (click)="cancel()" md-raised-button>Cancel</button> &nbsp;
+        <button (click)="delete()" *ngIf="!isAddMode()" md-raised-button>Delete</button>
+      </div>
+    </md-card-footer>
 
   </div>
-</article>
+</md-card>

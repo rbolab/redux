@@ -1,34 +1,20 @@
-import { Component, OnInit, Input, AfterContentChecked } from '@angular/core';
-import { CourseService } from './course.service';
-import { Course } from './course';
-import { ActivatedRoute, Router } from '@angular/router';
-//import { ToastService } from '../blocks/toast';
-//import { ModalService } from '../blocks/modal';
+import {Component, OnInit, Input} from '@angular/core';
+import {CourseService} from './course.service';
+import {Course} from './course';
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
+  selector: 'app-fund-detail',
   templateUrl: './course.component.html',
 })
-export class CourseComponent implements OnInit, AfterContentChecked {
-  @Input() course: Course;
+export class CourseComponent implements OnInit {
+  course: Course;
   editCourse: Course = <Course>{};
 
-  constructor(
-    private _courseService: CourseService,
-    private _route: ActivatedRoute,
-    private _router: Router
-  ) { }
-
-  private _getCourse() {
-
-    let id = +this._route.snapshot.params['id'];
-    if (id === 0) return;
-    if (this.isAddMode()) {
-      this.course = <Course>{ name: '', topic: 'Web' };
-      this.editCourse = this.course;
-      return;
-    }
-    this._courseService.getCourse(id)
-      .subscribe(course => this._setEditCourse(course));
+  constructor(private _courseService: CourseService,
+              private _route: ActivatedRoute,
+              private _router: Router) {
   }
 
   private _setEditCourse(course: Course) {
@@ -40,26 +26,59 @@ export class CourseComponent implements OnInit, AfterContentChecked {
     }
   }
 
-  
-
   isAddMode() {
-    const id = +this._route.snapshot.params['id'];
-    return isNaN(id);
+    return isNaN(this.course.id);
   }
 
-  
+  cancel() {
+    this.course = null;
+    this.editCourse = Object.assign({}, this.course);
+    this._gotoCourses();
+  }
+
+  delete() {
+    this._courseService.deleteCourse(this.course)
+      .subscribe(() => {
+        this._gotoCourses();
+      });
+  }
+
+  save() {
+    if (this.course.id == null) {
+      this._courseService.addCourse(this.editCourse)
+        .subscribe(() => {
+          this._gotoCourses();
+        });
+      return;
+    }
+
+    this._courseService.updateCourse(this.editCourse)
+      .subscribe(() => {
+        this._gotoCourses();
+      });
+  }
 
   private _gotoCourses() {
-    this._router.navigate(['courses']);
+    this._router.navigate(['funds']);
   }
 
 
   ngOnInit() {
-    this._getCourse();
-  }
-
-  ngAfterContentChecked() {
-    //componentHandler.upgradeDom();
+    this._route.params.subscribe((params: {id: number}) => {
+        if (isNaN(params.id)) {
+          if (params.id) {
+            this.course = <Course>{name: '', topic: ''};
+            this.editCourse = this.course;
+            return;
+          } else {
+            this.course = null;
+            return;
+          }
+        }
+        this._courseService.getCourse(params.id)
+          .subscribe(course => this._setEditCourse(course));
+      }
+    );
   }
 
 }

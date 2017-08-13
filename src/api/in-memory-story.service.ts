@@ -31,6 +31,25 @@ export class InMemoryStoryService implements InMemoryDbService {
       }
     ];
 
-    return { courses };
+    let cars = [
+      {
+        "id": 1,
+        "model": "Tesla"
+      },
+      {
+        "id": 2,
+        "model": "BMW"
+      },
+      {
+        "id":3,
+        "model": "Mercedes"
+      },
+      {
+        "id":4,
+        "model": "VW"
+      }
+    ];
+
+    return { courses, cars };
   }
 }

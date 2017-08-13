@@ -1,20 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <button md-button [mdMenuTriggerFor]="menu">Menu</button>
-      <md-menu #menu="mdMenu">
-        <button routerLink="/funds" md-menu-item>Funds</button>
-        <button routerLink="/" md-menu-item>To home page ...</button>
-      </md-menu>
+    <md-toolbar>
+      <md-icon routerLink="/">home</md-icon>
+      <button routerLink='/funds' md-button> Funds </button>
+    </md-toolbar>
 
-    </div>
   </header>
   <main class="mdl-layout__content">
     <section>
-      <div class="page-content">
-        <router-outlet></router-outlet>
-      </div>
+      <router-outlet></router-outlet>
     </section>
   </main>
 </div>
