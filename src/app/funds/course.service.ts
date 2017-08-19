@@ -12,24 +12,13 @@ import {Course} from './course';
 
 
 let coursesUrl = CONFIG.baseUrls.courses;
-let carsUrl = CONFIG.baseUrls.cars;
 
 
 @Injectable()
 export class CourseService {
 
-  private course$ = new BehaviorSubject<Course>(null);
-
   constructor(private _http: Http) {
   }
-
-  /*selectCourse(course : Course) {
-   this.course$.next(course);
-   }
-
-   getCourse$(){
-   return this.course$.asObservable();
-   }*/
 
   addCourse(course: Course) {
     let body = JSON.stringify(course);
@@ -43,14 +32,7 @@ export class CourseService {
       .delete(`${coursesUrl}/${course.id}`);
   }
 
-  getCars() {
-    return this._http.get(`${carsUrl}`)
-      .map((response: Response) => response.json().data);
-  }
-
   getCourses() {
-
-
     return this._http.get(`${coursesUrl}`)
       .map((response: Response) => <Course[]>response.json().data);
   }

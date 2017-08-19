@@ -34,19 +34,23 @@ export class InMemoryStoryService implements InMemoryDbService {
     let cars = [
       {
         "id": 1,
-        "model": "Tesla"
+        "model": "Tesla",
+        "year": 2017
       },
       {
         "id": 2,
-        "model": "BMW"
+        "model": "BMW",
+        "year": 2015
       },
       {
         "id":3,
-        "model": "Mercedes"
+        "model": "Mercedes",
+        "year": 2015
       },
       {
         "id":4,
-        "model": "VW"
+        "model": "VW",
+        "year": 2014
       }
     ];
 

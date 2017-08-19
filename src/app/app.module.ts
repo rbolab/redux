@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryStoryService } from '../api/in-memory-story.service';
@@ -40,6 +40,10 @@ import { MdTableModule, MdButtonModule, MdInputModule, MdCardModule, MdMenuModul
 } from '@angular/material';
 import {CdkTableModule} from "@angular/cdk/table";
 import "hammerjs";
+import {CarsListComponent} from "./cars/cars-list.component";
+import {CarService} from "./cars/car.service";
+import {CarComponent} from "./cars/car.component";
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -47,11 +51,15 @@ import "hammerjs";
     AppComponent,
     CourseComponent,
     CourseListComponent,
+    CarsListComponent,
+    CarComponent,
     FundsComponent
   ],
   imports: [
     HttpModule,
     FormsModule,
+    RouterModule,
+    ReactiveFormsModule,
     InMemoryWebApiModule.forRoot(InMemoryStoryService, { delay: 100 }),
     AppRoutingModule,
     BrowserModule,
@@ -89,8 +97,10 @@ import "hammerjs";
     MdTooltipModule,
     CdkTableModule
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
-    CourseService
+    CourseService,
+    CarService
   ],
   bootstrap: [AppComponent]
 })

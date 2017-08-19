@@ -1,10 +1,16 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import {MdIconModule} from "@angular/material";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MdIconModule,
+        RouterTestingModule
+      ],
       declarations: [
         AppComponent
       ],
@@ -23,10 +29,21 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('app');
   }));
 
-  it('should render title in a h1 tag', async(() => {
+  it('should render md-icon with text home', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+    expect(compiled.querySelector('md-icon').textContent).toContain('home');
   }));
+
+  it('should go to route cars when click on cars button', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    compiled.querySelector('button[routerLink="/funds"]').click();
+    fixture.whenStable().then(() => {
+      console.log("sable");
+    })
+  }));
+
 });

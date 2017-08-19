@@ -1,0 +1,19 @@
+<article class="template animated slideInRight">
+
+
+  <!-- <filter-text (changed)="filterChanged($event)"></filter-text> -->
+
+  <ul>
+    <li *ngFor="let car of cars ">
+
+      <div class="mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">{{car.id}}. {{car.model}} - {{car.year}}
+          <button [routerLink]="['./cars', {id: car.id}]">Show</button></h2>
+        </div>
+
+      </div>
+
+    </li>
+  </ul>
+</article>

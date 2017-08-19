@@ -29,11 +29,6 @@ export class CourseListComponent implements OnInit {
       .subscribe(courses => {
         this.courses = this.filteredCourses = courses;
       });
-
-    this._courseService.getCars()
-      .subscribe(cars => {
-        console.log(cars);
-      })
   }
 
   addFund(){

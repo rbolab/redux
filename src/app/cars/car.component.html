@@ -1,0 +1,28 @@
+<md-card>
+  <div *ngIf="car && editCar">
+    <md-card-title>
+      Car Details
+    </md-card-title>
+    <md-card-content>
+      <form [formGroup]="carForm">
+        <md-input-container>
+          <input mdInput placeholder="Model" formControlName="model">
+        </md-input-container>
+
+        <md-input-container>
+          <input mdInput placeholder="Year" formControlName="year">
+        </md-input-container>
+      </form>
+    </md-card-content>
+    <md-card-footer>
+      <div>
+        <button (click)="save()" md-raised-button>Save</button>
+        &nbsp;
+        <button (click)="cancel()" md-raised-button>Cancel</button>
+        &nbsp;
+        <button (click)="delete()" *ngIf="!isAddMode()" md-raised-button>Delete</button>
+      </div>
+    </md-card-footer>
+
+  </div>
+</md-card>
