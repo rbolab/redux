@@ -21,7 +21,13 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/datatables.net/js/jquery.dataTables.js",
+        "../node_modules/datatables.net-responsive/js/dataTables.responsive.js",
+        "../node_modules/datatables.net-fixedheader/js/dataTables.fixedHeader.js",
+        "dataTables.material.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
