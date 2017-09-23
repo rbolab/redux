@@ -4,6 +4,7 @@ import { FundsComponent } from "./funds/funds.component";
 import {CarsListComponent} from "./cars/cars-list.component";
 import {CarComponent} from "./cars/car.component";
 import {SimulationListComponent} from "./simulation/simulation-list.component";
+import {SimulationWizardCreateStep1Component} from "./simulation/steps/create/step1/simulation.wizard.create.step1";
 
 const routes = [
   //{ path: '', redirectTo: '/funds', pathMatch: 'full' },
@@ -13,9 +14,8 @@ const routes = [
   {path: 'cars', component: CarsListComponent},
   {path: 'cars/:id', component: CarComponent},
 
-  {path: 'simulation', component: SimulationListComponent
-
-  }
+  {path: 'simulations', component: SimulationListComponent},
+  {path: 'simulation/create/step1', component: SimulationWizardCreateStep1Component}
 ];
 
 @NgModule({

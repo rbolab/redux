@@ -10,7 +10,7 @@ import {CourseListComponent} from "./funds/course-list.component";
 import {FundsComponent} from "./funds/funds.component";
 import {CourseService} from "./funds/course.service";
 import {AppComponent} from './app.component';
-
+import { NgReduxModule, NgRedux } from '@angular-redux/store';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MdTableModule, MdButtonModule, MdInputModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule,
@@ -48,6 +48,9 @@ import {CarFilterComponent} from "./cars/car-filter.component";
 import {SimulationListComponent} from "./simulation/simulation-list.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {SimulationService} from "./simulation/simulation.service";
+import { createLogger } from 'redux-logger';
+import {IAppState, INTIAL_SIMULATION_STATE, rootReducer} from "./simulation/store/simulation.store";
+import {SimulationWizardCreateStep1Component} from "./simulation/steps/create/step1/simulation.wizard.create.step1";
 
 
 @NgModule({
@@ -59,7 +62,8 @@ import {SimulationService} from "./simulation/simulation.service";
     CarComponent,
     CarFilterComponent,
     FundsComponent,
-    SimulationListComponent
+    SimulationListComponent,
+    SimulationWizardCreateStep1Component
   ],
   imports: [
     FlexLayoutModule,
@@ -101,7 +105,8 @@ import {SimulationService} from "./simulation/simulation.service";
     MdSortModule,
     MdTabsModule,
     MdTooltipModule,
-    CdkTableModule
+    CdkTableModule,
+    NgReduxModule
   ],
   exports: [
     FlexLayoutModule,
@@ -146,4 +151,9 @@ import {SimulationService} from "./simulation/simulation.service";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer, INTIAL_SIMULATION_STATE, [ createLogger() ]);
+  }
+
 }

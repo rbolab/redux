@@ -5,6 +5,6 @@ import {Injectable} from "@angular/core";
 export class SimulationService {
 
   saveSimulation(simulation: Simulation) {
-    console.log("saving simulation : ", simulation);
+    // console.log("saving simulation : ", simulation);
   }
 }

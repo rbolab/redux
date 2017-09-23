@@ -1,13 +1,17 @@
+
 <div fxLayout="column" fxLayoutGap="20px">
+  <button (click)="createSimulation()" md-raised-button>Add</button>
   <form [formGroup]="simulationFormGroup" (ngSubmit)="onSubmit()">
     <div class="container">
-      <h2>My simulation</h2>
+      <h2>List of simulations : </h2>
+
 
 
       <div fxFlex>
         <md-input-container>
           <input mdInput type="text" placeholder="Name" formControlName="name">
-          <md-error *ngIf="simulationFormGroup.get('name').touched && simulationFormGroup.get('name').hasError('required')">
+          <md-error
+            *ngIf="simulationFormGroup.get('name').touched && simulationFormGroup.get('name').hasError('required')">
             Name is <strong>required</strong>
           </md-error>
         </md-input-container>
@@ -30,7 +34,3 @@
 
   </form>
 </div>
-
-<fx-version></fx-version>
-
-

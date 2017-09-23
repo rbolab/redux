@@ -3,6 +3,10 @@ import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Simulation} from "./model/simulation";
 import {SimulationService} from "./simulation.service";
+import {dispatch, NgRedux, select} from "@angular-redux/store";
+import {IAppState} from "./store/simulation.store";
+import {SAVE_SIMULATION} from "./store/simulation.actions";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-simulation-list',
@@ -11,22 +15,35 @@ import {SimulationService} from "./simulation.service";
 export class SimulationListComponent implements OnInit {
 
   simulationFormGroup: FormGroup;
-  simulation: Simulation;
   currencies = ['EUR', 'USD', 'CHF'];
 
-  constructor(private fb: FormBuilder, private simulationService: SimulationService) {}
+  @select()
+  simulation$: Observable<Simulation>;
 
-  onSubmit(){
+  constructor(private fb: FormBuilder,
+              private simulationService: SimulationService) {
+
+    this.simulationFormGroup = this.fb.group({
+      'name': ['', Validators.required],
+      'currency': ['', Validators.required]
+    });
+  }
+
+  @dispatch()
+  saveSimulation = () => ({type: SAVE_SIMULATION, payload: this.simulationFormGroup.value});
+
+  createSimulation = () => ({});
+
+  onSubmit() {
+    this.saveSimulation();
     this.simulationService.saveSimulation(this.simulationFormGroup.value);
   }
 
   ngOnInit() {
-    this.simulation = {name: 'test', currency: 'USD'};
-
-    this.simulationFormGroup = this.fb.group({
-      'name': [this.simulation.name, Validators.required],
-      'currency': [this.simulation.currency, Validators.required]
+    this.simulation$.subscribe(simulation => {
+      this.simulationFormGroup.setValue(Object.assign({}, simulation));
     });
+
   }
 
 }
