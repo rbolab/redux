@@ -18,7 +18,6 @@ import {
   MdButtonToggleModule,
   MdCheckboxModule,
   MdChipsModule,
-  MdCoreModule,
   MdDatepickerModule,
   MdDialogModule,
   MdExpansionModule,
@@ -48,6 +47,7 @@ import {RouterModule} from "@angular/router";
 import {CarFilterComponent} from "./cars/car-filter.component";
 import {SimulationListComponent} from "./simulation/simulation-list.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {SimulationService} from "./simulation/simulation.service";
 
 
 @NgModule({
@@ -82,7 +82,6 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MdButtonToggleModule,
     MdCheckboxModule,
     MdChipsModule,
-    MdCoreModule,
     MdDatepickerModule,
     MdDialogModule,
     MdExpansionModule,
@@ -105,6 +104,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     CdkTableModule
   ],
   exports: [
+    FlexLayoutModule,
     CdkTableModule,
     MdAutocompleteModule,
     MdButtonModule,
@@ -112,7 +112,6 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MdCardModule,
     MdCheckboxModule,
     MdChipsModule,
-    MdCoreModule,
     MdDatepickerModule,
     MdDialogModule,
     MdExpansionModule,
@@ -141,7 +140,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     CourseService,
-    CarService
+    CarService,
+    SimulationService
   ],
   bootstrap: [AppComponent]
 })
