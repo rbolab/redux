@@ -1,0 +1,9 @@
+<md-input-container>
+  <input mdInput type="search" placeholder="Search Text" [formControl]="searchText">
+</md-input-container>
+
+<md-input-container>
+  <input mdInput [mdDatepicker]="myDatepicker" [formControl]="selectedDate">
+  <md-datepicker-toggle mdSuffix [for]="myDatepicker"></md-datepicker-toggle>
+  <md-datepicker #myDatepicker></md-datepicker>
+</md-input-container>

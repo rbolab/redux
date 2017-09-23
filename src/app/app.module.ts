@@ -1,18 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryStoryService } from '../api/in-memory-story.service';
-import { AppRoutingModule } from './app-routing.module';
-import { CourseComponent } from "./funds/course.component";
-import { CourseListComponent } from "./funds/course-list.component";
-import { FundsComponent } from "./funds/funds.component";
-import { CourseService } from "./funds/course.service";
-import { AppComponent } from './app.component';
+import {HttpModule} from '@angular/http';
+import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {InMemoryStoryService} from '../api/in-memory-story.service';
+import {AppRoutingModule} from './app-routing.module';
+import {CourseComponent} from "./funds/course.component";
+import {CourseListComponent} from "./funds/course-list.component";
+import {FundsComponent} from "./funds/funds.component";
+import {CourseService} from "./funds/course.service";
+import {AppComponent} from './app.component';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdTableModule, MdButtonModule, MdInputModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule,
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MdTableModule, MdButtonModule, MdInputModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule,
   MdAutocompleteModule,
   MdButtonToggleModule,
   MdCheckboxModule,
@@ -44,6 +45,8 @@ import {CarsListComponent} from "./cars/cars-list.component";
 import {CarService} from "./cars/car.service";
 import {CarComponent} from "./cars/car.component";
 import {RouterModule} from "@angular/router";
+import {CarFilterComponent} from "./cars/car-filter.component";
+import {SimulationListComponent} from "./simulation/simulation-list.component";
 
 
 @NgModule({
@@ -53,14 +56,16 @@ import {RouterModule} from "@angular/router";
     CourseListComponent,
     CarsListComponent,
     CarComponent,
-    FundsComponent
+    CarFilterComponent,
+    FundsComponent,
+    SimulationListComponent
   ],
   imports: [
     HttpModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    InMemoryWebApiModule.forRoot(InMemoryStoryService, { delay: 100 }),
+    InMemoryWebApiModule.forRoot(InMemoryStoryService, {delay: 100}),
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -97,11 +102,46 @@ import {RouterModule} from "@angular/router";
     MdTooltipModule,
     CdkTableModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  exports: [
+    CdkTableModule,
+    MdAutocompleteModule,
+    MdButtonModule,
+    MdButtonToggleModule,
+    MdCardModule,
+    MdCheckboxModule,
+    MdChipsModule,
+    MdCoreModule,
+    MdDatepickerModule,
+    MdDialogModule,
+    MdExpansionModule,
+    MdGridListModule,
+    MdIconModule,
+    MdInputModule,
+    MdListModule,
+    MdMenuModule,
+    MdNativeDateModule,
+    MdPaginatorModule,
+    MdProgressBarModule,
+    MdProgressSpinnerModule,
+    MdRadioModule,
+    MdRippleModule,
+    MdSelectModule,
+    MdSidenavModule,
+    MdSliderModule,
+    MdSlideToggleModule,
+    MdSnackBarModule,
+    MdSortModule,
+    MdTableModule,
+    MdTabsModule,
+    MdToolbarModule,
+    MdTooltipModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     CourseService,
     CarService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

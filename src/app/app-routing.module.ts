@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FundsComponent } from "./funds/funds.component";
 import {CarsListComponent} from "./cars/cars-list.component";
 import {CarComponent} from "./cars/car.component";
+import {SimulationListComponent} from "./simulation/simulation-list.component";
 
 const routes = [
   //{ path: '', redirectTo: '/funds', pathMatch: 'full' },
@@ -10,7 +11,11 @@ const routes = [
   {path: 'funds/:id', component: FundsComponent},
 
   {path: 'cars', component: CarsListComponent},
-  {path: 'cars/:id', component: CarComponent}
+  {path: 'cars/:id', component: CarComponent},
+
+  {path: 'simulation', component: SimulationListComponent
+
+  }
 ];
 
 @NgModule({
