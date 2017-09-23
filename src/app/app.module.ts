@@ -47,6 +47,7 @@ import {CarComponent} from "./cars/car.component";
 import {RouterModule} from "@angular/router";
 import {CarFilterComponent} from "./cars/car-filter.component";
 import {SimulationListComponent} from "./simulation/simulation-list.component";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import {SimulationListComponent} from "./simulation/simulation-list.component";
     SimulationListComponent
   ],
   imports: [
+    FlexLayoutModule,
     HttpModule,
     FormsModule,
     RouterModule,
