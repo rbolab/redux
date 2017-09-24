@@ -3,5 +3,8 @@
   <div class="container">
     <h3>List of simulations : </h3>
 
+    <ul>
+      <li *ngFor="let simulation of simulations$ | async">{{simulation.name}}</li>
+    </ul>
   </div>
 </div>

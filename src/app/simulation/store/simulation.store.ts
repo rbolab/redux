@@ -4,6 +4,7 @@ import {Simulation} from "../model/simulation";
 export interface IAppState {
   currentStep: number;
   simulation: Simulation;
+  simulations: Simulation[];
 };
 
 export const INTIAL_SIMULATION_STATE = {
@@ -13,7 +14,8 @@ export const INTIAL_SIMULATION_STATE = {
     currency: '',
     fees: 0,
     methodology: ''
-  }
+  },
+  simulations:[]
 };
 
 

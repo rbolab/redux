@@ -1,4 +1,4 @@
-import {RESET_SIMULATION, SAVE_SIMULATION} from "./simulation.actions";
+import {ADD_SIMULATION, SAVE_SIMULATION} from "./simulation.actions";
 import {
   lensPath,
   path,
@@ -8,12 +8,14 @@ import {
   update,
   merge,
   isNil,
+  view,
   last,
 } from 'ramda';
 import {IAppState, INTIAL_SIMULATION_STATE} from "./simulation.store";
 import {ActionPayload} from "./action.payload";
 
 export function rootReducer(state: IAppState, action: ActionPayload): IAppState {
+
   switch (action.type) {
     case SAVE_SIMULATION:
       return assocPath(
@@ -22,8 +24,14 @@ export function rootReducer(state: IAppState, action: ActionPayload): IAppState 
         state
       );
 
-    case RESET_SIMULATION:
-      return INTIAL_SIMULATION_STATE;
+    case ADD_SIMULATION:
+      const lensForProp = lensPath(action.payload.path);
+      const propValue = <any[]> view(lensForProp, state);
+      return assocPath(
+        action.payload.path,
+        concat(propValue, [action.payload.value]),
+        state
+      );
 
     default:
       return state;
