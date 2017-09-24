@@ -51,6 +51,7 @@ import {SimulationService} from "./simulation/simulation.service";
 import { createLogger } from 'redux-logger';
 import {IAppState, INTIAL_SIMULATION_STATE, rootReducer} from "./simulation/store/simulation.store";
 import {SimulationWizardCreateStep1Component} from "./simulation/steps/create/step1/simulation.wizard.create.step1";
+import {SimulationWizardCreateStep2Component} from "./simulation/steps/create/step2/simulation.wizard.create.step2";
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import {SimulationWizardCreateStep1Component} from "./simulation/steps/create/st
     CarFilterComponent,
     FundsComponent,
     SimulationListComponent,
-    SimulationWizardCreateStep1Component
+    SimulationWizardCreateStep1Component,
+    SimulationWizardCreateStep2Component
   ],
   imports: [
     FlexLayoutModule,

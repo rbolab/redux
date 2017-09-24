@@ -1,0 +1,30 @@
+<form [formGroup]="step2FormGroup">
+  <div class="container">
+    <h3>Step <strong>2</strong> of <strong>3</strong></h3>
+
+    <div fxFlex>
+      <md-input-container>
+        <input mdInput type="number" placeholder="Fees" formControlName="fees">
+        <md-error
+          *ngIf="step2FormGroup.get('fees').touched && step2FormGroup.get('fees').hasError('required')">
+          Fees is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+    </div>
+
+    <div fxFlex>
+      Methodology
+      <md-radio-group formControlName="methodology">
+        <md-radio-button *ngFor="let methodology of methodologies" [value]="methodology">{{methodology}}</md-radio-button>
+      </md-radio-group>
+
+    </div>
+
+    <div fxFlex>
+      <button (click)="back()" md-raised-button>Back</button>
+      <button (click)="next()" [disabled]="step2FormGroup.invalid" md-raised-button>Next</button>
+    </div>
+
+  </div>
+
+</form>

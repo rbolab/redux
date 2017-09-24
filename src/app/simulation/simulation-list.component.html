@@ -1,36 +1,7 @@
-
 <div fxLayout="column" fxLayoutGap="20px">
   <button (click)="createSimulation()" md-raised-button>Add</button>
-  <form [formGroup]="simulationFormGroup" (ngSubmit)="onSubmit()">
-    <div class="container">
-      <h2>List of simulations : </h2>
+  <div class="container">
+    <h3>List of simulations : </h3>
 
-
-
-      <div fxFlex>
-        <md-input-container>
-          <input mdInput type="text" placeholder="Name" formControlName="name">
-          <md-error
-            *ngIf="simulationFormGroup.get('name').touched && simulationFormGroup.get('name').hasError('required')">
-            Name is <strong>required</strong>
-          </md-error>
-        </md-input-container>
-      </div>
-
-      <div fxFlex>
-        Currency
-        <md-radio-group formControlName="currency">
-          <md-radio-button *ngFor="let currency of currencies" [value]="currency">{{currency}}</md-radio-button>
-        </md-radio-group>
-
-      </div>
-
-      <div fxFlex>
-        <button type="submit" [disabled]="simulationFormGroup.invalid">Save</button>
-      </div>
-
-    </div>
-
-
-  </form>
+  </div>
 </div>

@@ -1,0 +1,29 @@
+<form [formGroup]="step1FormGroup" (ngSubmit)="next()">
+  <div class="container">
+    <h3>Step <strong>1</strong> of <strong>3</strong></h3>
+
+    <div fxFlex>
+      <md-input-container>
+        <input mdInput type="text" placeholder="Name" formControlName="name">
+        <md-error
+          *ngIf="step1FormGroup.get('name').touched && step1FormGroup.get('name').hasError('required')">
+          Name is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+    </div>
+
+    <div fxFlex>
+      Currency
+      <md-radio-group formControlName="currency">
+        <md-radio-button *ngFor="let currency of currencies" [value]="currency">{{currency}}</md-radio-button>
+      </md-radio-group>
+
+    </div>
+
+    <div fxFlex>
+      <button type="submit" [disabled]="step1FormGroup.invalid" md-raised-button>Next</button>
+    </div>
+
+  </div>
+
+</form>

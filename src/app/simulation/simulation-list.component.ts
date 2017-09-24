@@ -14,36 +14,16 @@ import {Observable} from "rxjs/Observable";
 })
 export class SimulationListComponent implements OnInit {
 
-  simulationFormGroup: FormGroup;
-  currencies = ['EUR', 'USD', 'CHF'];
-
-  @select()
-  simulation$: Observable<Simulation>;
-
-  constructor(private fb: FormBuilder,
-              private simulationService: SimulationService) {
-
-    this.simulationFormGroup = this.fb.group({
-      'name': ['', Validators.required],
-      'currency': ['', Validators.required]
-    });
+  constructor(private simulationService: SimulationService,
+              private router: Router) {
   }
 
-  @dispatch()
-  saveSimulation = () => ({type: SAVE_SIMULATION, payload: this.simulationFormGroup.value});
-
-  createSimulation = () => ({});
-
-  onSubmit() {
-    this.saveSimulation();
-    this.simulationService.saveSimulation(this.simulationFormGroup.value);
-  }
+  createSimulation() {
+    this.simulationService.resetSimulation();
+    this.router.navigateByUrl('simulation/create/step1');
+  };
 
   ngOnInit() {
-    this.simulation$.subscribe(simulation => {
-      this.simulationFormGroup.setValue(Object.assign({}, simulation));
-    });
-
   }
 
 }
