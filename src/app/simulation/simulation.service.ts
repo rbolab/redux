@@ -14,9 +14,13 @@ export class SimulationService {
   resetSimulation = () => ({type: RESET_SIMULATION});
 
   @dispatch()
-  updateSimulation = (simulation) => ({type: SAVE_SIMULATION, payload: simulation});
+  updateSimulation = (simulation) => ({
+    type: SAVE_SIMULATION, payload: {
+      path: ['simulation'],
+      value: simulation
+    }
+  });
 
-  saveSimulation(simulation: Simulation) {
-    // console.log("saving simulation : ", simulation);
-  }
+  saveSimulation() { };
+
 }

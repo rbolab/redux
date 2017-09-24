@@ -1,0 +1,25 @@
+<md-card>
+  <md-card-subtitle>Step <strong>3</strong> of <strong>3</strong></md-card-subtitle>
+  <md-card-title>Summary</md-card-title>
+  <md-card-content>
+    <h3>Step 1</h3>
+    <p>
+      <strong>Name:</strong> {{(simulationService.simulation$ | async)?.name}}
+    </p>
+    <p>
+      <strong>Currency:</strong> {{(simulationService.simulation$ | async)?.currency}}
+    </p>
+    <h3>Step 2</h3>
+    <p>
+      <strong>Fees:</strong> {{(simulationService.simulation$ | async)?.fees}} %
+    </p>
+    <p>
+      <strong>Methodology:</strong> {{(simulationService.simulation$ | async)?.methodology}}
+    </p>
+
+  </md-card-content>
+  <md-card-actions>
+    <button type="button" md-raised-button color="accent" (click)="back()">BACK</button>
+    <button type="click" md-raised-button color="accent" (click)="submit()">SUBMIT</button>
+  </md-card-actions>
+</md-card>

@@ -1,20 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Simulation} from "../../../model/simulation";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {SimulationService} from "../../../simulation.service";
+import {ISubscription} from "rxjs/Subscription";
 
 
 @Component({
   selector: 'simulation-wizard-create-step-1',
-  templateUrl: 'simulation-wizard-create-step-1.component.html'
+  templateUrl: './simulation-wizard-create-step-1.component.html',
+  styleUrls: ['./simulation-wizard-create-step-1.component.css']
 })
 
-export class SimulationWizardCreateStep1Component implements OnInit {
+export class SimulationWizardCreateStep1Component implements OnInit, OnDestroy {
 
   step1FormGroup: FormGroup;
 
   currencies = ['EUR', 'USD', 'CHF'];
+
+  private subscription: ISubscription;
 
   constructor(private fb: FormBuilder,
               private simulationService: SimulationService,
@@ -33,9 +37,13 @@ export class SimulationWizardCreateStep1Component implements OnInit {
   }
 
   ngOnInit() {
-    this.simulationService.simulation$.subscribe(simulation => {
+    this.subscription = this.simulationService.simulation$.subscribe(simulation => {
       this.initForm(simulation);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

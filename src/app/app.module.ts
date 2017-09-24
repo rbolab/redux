@@ -36,7 +36,7 @@ import {
   MdSnackBarModule,
   MdSortModule,
   MdTabsModule,
-  MdTooltipModule
+  MdTooltipModule, MdStepperModule
 } from '@angular/material';
 import {CdkTableModule} from "@angular/cdk/table";
 import "hammerjs";
@@ -49,9 +49,11 @@ import {SimulationListComponent} from "./simulation/simulation-list.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {SimulationService} from "./simulation/simulation.service";
 import { createLogger } from 'redux-logger';
-import {IAppState, INTIAL_SIMULATION_STATE, rootReducer} from "./simulation/store/simulation.store";
+import {IAppState, INTIAL_SIMULATION_STATE} from "./simulation/store/simulation.store";
 import {SimulationWizardCreateStep1Component} from "./simulation/steps/create/step1/simulation.wizard.create.step1";
 import {SimulationWizardCreateStep2Component} from "./simulation/steps/create/step2/simulation.wizard.create.step2";
+import {rootReducer} from "./simulation/store/simulation.reducer";
+import {SimulationWizardCreateStep3Component} from "./simulation/steps/create/step3/simulation.wizard.create.step3";
 
 
 @NgModule({
@@ -65,7 +67,8 @@ import {SimulationWizardCreateStep2Component} from "./simulation/steps/create/st
     FundsComponent,
     SimulationListComponent,
     SimulationWizardCreateStep1Component,
-    SimulationWizardCreateStep2Component
+    SimulationWizardCreateStep2Component,
+    SimulationWizardCreateStep3Component
   ],
   imports: [
     FlexLayoutModule,
@@ -107,6 +110,7 @@ import {SimulationWizardCreateStep2Component} from "./simulation/steps/create/st
     MdSortModule,
     MdTabsModule,
     MdTooltipModule,
+    MdStepperModule,
     CdkTableModule,
     NgReduxModule
   ],

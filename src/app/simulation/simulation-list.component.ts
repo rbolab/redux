@@ -14,8 +14,13 @@ import {Observable} from "rxjs/Observable";
 })
 export class SimulationListComponent implements OnInit {
 
+
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
   constructor(private simulationService: SimulationService,
-              private router: Router) {
+              private router: Router, private _formBuilder: FormBuilder) {
   }
 
   createSimulation() {
@@ -24,6 +29,12 @@ export class SimulationListComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 
 }

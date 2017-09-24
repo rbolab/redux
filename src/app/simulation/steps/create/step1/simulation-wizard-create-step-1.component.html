@@ -1,8 +1,10 @@
-<form [formGroup]="step1FormGroup" (ngSubmit)="next()">
-  <div class="container">
-    <h3>Step <strong>1</strong> of <strong>3</strong></h3>
+<form novalidate [formGroup]="step1FormGroup" (ngSubmit)="next()">
+  <md-card>
+    <md-card-subtitle>Step <strong>1</strong> of <strong>3</strong></md-card-subtitle>
+    <md-card-title>User</md-card-title>
+    <md-card-content>
 
-    <div fxFlex>
+    <div class="form-group">
       <md-input-container>
         <input mdInput type="text" placeholder="Name" formControlName="name">
         <md-error
@@ -12,18 +14,18 @@
       </md-input-container>
     </div>
 
-    <div fxFlex>
-      Currency
+    <div class="form-group space">
+
       <md-radio-group formControlName="currency">
+        Currency:
         <md-radio-button *ngFor="let currency of currencies" [value]="currency">{{currency}}</md-radio-button>
       </md-radio-group>
 
     </div>
 
-    <div fxFlex>
-      <button type="submit" [disabled]="step1FormGroup.invalid" md-raised-button>Next</button>
-    </div>
-
-  </div>
-
+    </md-card-content>
+    <md-card-actions>
+      <button type="submit" [disabled]="step1FormGroup.invalid" md-raised-button color="accent">NEXT</button>
+    </md-card-actions>
+  </md-card>
 </form>

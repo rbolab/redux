@@ -1,8 +1,10 @@
-<form [formGroup]="step2FormGroup">
-  <div class="container">
-    <h3>Step <strong>2</strong> of <strong>3</strong></h3>
+<form novalidate [formGroup]="step2FormGroup">
+  <md-card>
+    <md-card-subtitle>Step <strong>1</strong> of <strong>3</strong></md-card-subtitle>
+    <md-card-title>User</md-card-title>
+    <md-card-content>
 
-    <div fxFlex>
+    <div class="form-group">
       <md-input-container>
         <input mdInput type="number" placeholder="Fees" formControlName="fees">
         <md-error
@@ -20,11 +22,10 @@
 
     </div>
 
-    <div fxFlex>
-      <button (click)="back()" md-raised-button>Back</button>
-      <button (click)="next()" [disabled]="step2FormGroup.invalid" md-raised-button>Next</button>
-    </div>
-
-  </div>
-
+    </md-card-content>
+    <md-card-actions>
+      <button (click)="back()" md-raised-button color="accent">Back</button>
+      <button (click)="next()" [disabled]="step2FormGroup.invalid" md-raised-button color="accent">NEXT</button>
+    </md-card-actions>
+  </md-card>
 </form>
