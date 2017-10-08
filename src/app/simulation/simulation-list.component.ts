@@ -1,32 +1,31 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Simulation} from "./model/simulation";
-import {SimulationService} from "./simulation.service";
-import {dispatch, NgRedux, select} from "@angular-redux/store";
-import {IAppState} from "./store/simulation.store";
-import {SAVE_SIMULATION} from "./store/simulation.actions";
+import {select} from "@angular-redux/store";
+import {SimulationListType} from "./api/simulation.store";
 import {Observable} from "rxjs/Observable";
+import {SimulationAPIActions} from "./api/simulation.actions";
 
 @Component({
   selector: 'app-simulation-list',
-  templateUrl: './simulation-list.component.html'
+  templateUrl: './simulation-list.component.html',
+  styleUrls: ['./simulation-list.component.scss']
 })
 export class SimulationListComponent implements OnInit {
 
   @select()
-  simulations$: Observable<Simulation[]>;
+  simulations$: Observable<SimulationListType>;
 
-  constructor(private simulationService: SimulationService,
+  constructor(private actions: SimulationAPIActions,
               private router: Router) {
   }
 
   createSimulation() {
-    this.simulationService.resetSimulation();
+    this.actions.initializeSimulationWizard();
     this.router.navigateByUrl('simulation/create/step1');
   };
 
   ngOnInit() {
+    this.actions.loadSimulations();
   }
 
 }

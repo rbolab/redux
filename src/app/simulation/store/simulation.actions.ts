@@ -1,2 +1,0 @@
-export const SAVE_SIMULATION = 'SAVE_SIMULATION';
-export const ADD_SIMULATION = 'ADD_SIMULATION';

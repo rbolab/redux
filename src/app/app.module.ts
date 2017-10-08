@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
@@ -10,19 +10,23 @@ import {CourseListComponent} from "./funds/course-list.component";
 import {FundsComponent} from "./funds/funds.component";
 import {CourseService} from "./funds/course.service";
 import {AppComponent} from './app.component';
-import { NgReduxModule, NgRedux } from '@angular-redux/store';
+import {NgRedux, NgReduxModule} from '@angular-redux/store';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MdTableModule, MdButtonModule, MdInputModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule,
   MdAutocompleteModule,
+  MdButtonModule,
   MdButtonToggleModule,
+  MdCardModule,
   MdCheckboxModule,
   MdChipsModule,
   MdDatepickerModule,
   MdDialogModule,
   MdExpansionModule,
   MdGridListModule,
+  MdIconModule,
+  MdInputModule,
   MdListModule,
+  MdMenuModule,
   MdNativeDateModule,
   MdPaginatorModule,
   MdProgressBarModule,
@@ -35,8 +39,11 @@ import {
   MdSlideToggleModule,
   MdSnackBarModule,
   MdSortModule,
+  MdStepperModule,
+  MdTableModule,
   MdTabsModule,
-  MdTooltipModule, MdStepperModule
+  MdToolbarModule,
+  MdTooltipModule
 } from '@angular/material';
 import {CdkTableModule} from "@angular/cdk/table";
 import "hammerjs";
@@ -45,15 +52,9 @@ import {CarService} from "./cars/car.service";
 import {CarComponent} from "./cars/car.component";
 import {RouterModule} from "@angular/router";
 import {CarFilterComponent} from "./cars/car-filter.component";
-import {SimulationListComponent} from "./simulation/simulation-list.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {SimulationService} from "./simulation/simulation.service";
-import { createLogger } from 'redux-logger';
-import {IAppState, INTIAL_SIMULATION_STATE} from "./simulation/store/simulation.store";
-import {SimulationWizardCreateStep1Component} from "./simulation/steps/create/step1/simulation.wizard.create.step1";
-import {SimulationWizardCreateStep2Component} from "./simulation/steps/create/step2/simulation.wizard.create.step2";
-import {rootReducer} from "./simulation/store/simulation.reducer";
-import {SimulationWizardCreateStep3Component} from "./simulation/steps/create/step3/simulation.wizard.create.step3";
+import {SimulationModule} from "./simulation/simulation.module";
+import {StoreModule} from "./store/store.module";
 
 
 @NgModule({
@@ -64,11 +65,7 @@ import {SimulationWizardCreateStep3Component} from "./simulation/steps/create/st
     CarsListComponent,
     CarComponent,
     CarFilterComponent,
-    FundsComponent,
-    SimulationListComponent,
-    SimulationWizardCreateStep1Component,
-    SimulationWizardCreateStep2Component,
-    SimulationWizardCreateStep3Component
+    FundsComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -112,54 +109,19 @@ import {SimulationWizardCreateStep3Component} from "./simulation/steps/create/st
     MdTooltipModule,
     MdStepperModule,
     CdkTableModule,
-    NgReduxModule
-  ],
-  exports: [
-    FlexLayoutModule,
-    CdkTableModule,
-    MdAutocompleteModule,
-    MdButtonModule,
-    MdButtonToggleModule,
-    MdCardModule,
-    MdCheckboxModule,
-    MdChipsModule,
-    MdDatepickerModule,
-    MdDialogModule,
-    MdExpansionModule,
-    MdGridListModule,
-    MdIconModule,
-    MdInputModule,
-    MdListModule,
-    MdMenuModule,
-    MdNativeDateModule,
-    MdPaginatorModule,
-    MdProgressBarModule,
-    MdProgressSpinnerModule,
-    MdRadioModule,
-    MdRippleModule,
-    MdSelectModule,
-    MdSidenavModule,
-    MdSliderModule,
-    MdSlideToggleModule,
-    MdSnackBarModule,
-    MdSortModule,
-    MdTableModule,
-    MdTabsModule,
-    MdToolbarModule,
-    MdTooltipModule,
+    NgReduxModule,
+    StoreModule,
+    SimulationModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     CourseService,
-    CarService,
-    SimulationService
+    CarService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, INTIAL_SIMULATION_STATE, [ createLogger() ]);
-  }
+
 
 }

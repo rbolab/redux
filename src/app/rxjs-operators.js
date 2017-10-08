@@ -6,5 +6,6 @@ import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/zip';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';

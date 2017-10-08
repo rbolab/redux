@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Simulation} from "../../../model/simulation";
+import {ISimulation} from "../../../model/simulation";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {SimulationService} from "../../../simulation.service";
 import {ISubscription} from "rxjs/Subscription";
+import {SimulationAPIActions} from "../../../api/simulation.actions";
 
 
 @Component({
@@ -21,10 +21,11 @@ export class SimulationWizardCreateStep1Component implements OnInit, OnDestroy {
   private subscription: ISubscription;
 
   constructor(private fb: FormBuilder,
-              private simulationService: SimulationService,
-              private router: Router) { }
+              private actions: SimulationAPIActions,
+              private router: Router) {
+  }
 
-  initForm(simulation: Simulation){
+  initForm(simulation: ISimulation) {
     this.step1FormGroup = this.fb.group({
       'name': [simulation.name, Validators.required],
       'currency': [simulation.currency, Validators.required]
@@ -32,12 +33,12 @@ export class SimulationWizardCreateStep1Component implements OnInit, OnDestroy {
   }
 
   next() {
-    this.simulationService.updateSimulation(this.step1FormGroup.value);
+    this.actions.registerSimulationWizardStep(this.step1FormGroup.value);
     this.router.navigateByUrl('simulation/create/step2');
   }
 
   ngOnInit() {
-    this.subscription = this.simulationService.simulation$.subscribe(simulation => {
+    this.subscription = this.actions.simulation$.subscribe(simulation => {
       this.initForm(simulation);
     });
   }

@@ -4,17 +4,17 @@
   <md-card-content>
     <h3>Step 1</h3>
     <p>
-      <strong>Name:</strong> {{(simulationService.simulation$ | async)?.name}}
+      <strong>Name:</strong> {{(actions.simulation$ | async)?.name}}
     </p>
     <p>
-      <strong>Currency:</strong> {{(simulationService.simulation$ | async)?.currency}}
+      <strong>Currency:</strong> {{(actions.simulation$ | async)?.currency}}
     </p>
     <h3>Step 2</h3>
     <p>
-      <strong>Fees:</strong> {{(simulationService.simulation$ | async)?.fees}} %
+      <strong>Fees:</strong> {{(actions.simulation$ | async)?.fees}} %
     </p>
     <p>
-      <strong>Methodology:</strong> {{(simulationService.simulation$ | async)?.methodology}}
+      <strong>Methodology:</strong> {{(actions.simulation$ | async)?.methodology}}
     </p>
 
   </md-card-content>

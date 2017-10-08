@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {SimulationService} from "../../../simulation.service";
 import {Store} from "redux";
-import {IAppState} from "../../../store/simulation.store";
+
 import {NgRedux} from "@angular-redux/store";
+import {SimulationAPIActions} from "../../../api/simulation.actions";
+import {IAppState} from "../../../../store/model";
 
 @Component({
   selector: 'simulation-wizard-create-step-3',
@@ -13,13 +14,13 @@ import {NgRedux} from "@angular-redux/store";
 
 export class SimulationWizardCreateStep3Component implements OnInit, OnDestroy {
 
-  constructor(public simulationService: SimulationService,
+  constructor(public actions: SimulationAPIActions,
               private router: Router,
               private ngRedux: NgRedux<IAppState>) {
   }
 
   submit() {
-    this.simulationService.addSimulation(this.ngRedux.getState().simulation);
+    this.actions.addSimulation(this.ngRedux.getState().simulation);
     this.router.navigateByUrl('simulations');
   }
 

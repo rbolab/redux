@@ -2,8 +2,21 @@
   <input mdInput type="search" placeholder="Search Text" [formControl]="searchText">
 </md-input-container>
 
+<br/>
+
+<label>Start date : </label>
 <md-input-container>
-  <input mdInput [mdDatepicker]="myDatepicker" [formControl]="selectedDate">
+  <input mdInput [mdDatepicker]="myDatepicker" [formControl]="startDate">
   <md-datepicker-toggle mdSuffix [for]="myDatepicker"></md-datepicker-toggle>
   <md-datepicker #myDatepicker></md-datepicker>
+</md-input-container>
+
+<br/>
+
+<label>End date : </label>
+<md-input-container>
+
+  <input mdInput [mdDatepicker]="myDatepicker1" [formControl]="endDate">
+  <md-datepicker-toggle mdSuffix [for]="myDatepicker1"></md-datepicker-toggle>
+  <md-datepicker #myDatepicker1></md-datepicker>
 </md-input-container>

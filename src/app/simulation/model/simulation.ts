@@ -1,4 +1,4 @@
-export interface Simulation {
+export interface ISimulation {
   name: string;
   currency: string;
   fees: number;
